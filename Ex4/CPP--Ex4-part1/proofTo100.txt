@@ -1,0 +1,112 @@
+--- 0 seconds
+
+
+### Cleaning old files ###
+rm -f *.o demo test
+
+
+### Check 1: our demo program should compile with your class
+! timeout 20 make -j8 -f Makefile demo
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Demo.cpp -o Demo.o
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Game.cpp -o Game.o
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Player.cpp -o Player.o
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Duke.cpp -o Duke.o
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Assassin.cpp -o Assassin.o
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Ambassador.cpp -o Ambassador.o
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Captain.cpp -o Captain.o
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Contessa.cpp -o Contessa.o
+clang++  -std=c++2a -Werror -Wsign-conversion Demo.o Game.o Player.o Duke.o Assassin.o Ambassador.o Captain.o Contessa.o -o demo
+--- 0 seconds
+### Score 1: 100
+
+
+### Check 2: our demo program should run without errors
+! timeout 20 ./demo
+hehee
+Moshe
+Yossi
+Meirav
+Reut
+Gilad
+Moshe
+block
+2
+4
+block
+block
+4
+transfer
+tax
+stral
+tax
+coup
+Moshe
+Yossi
+Meirav
+Reut
+Gilad
+block
+Moshe
+Yossi
+Meirav
+Reut
+Gilad
+--- 0 seconds
+### Score 2: 100
+
+
+### Check 3: your test should compile 
+! timeout 20 make -j8 -f Makefile test
+clang++  -std=c++2a -Werror -Wsign-conversion --compile TestCounter.cpp -o TestCounter.o
+clang++  -std=c++2a -Werror -Wsign-conversion --compile Test.cpp -o Test.o
+clang++  -std=c++2a -Werror -Wsign-conversion TestCounter.o Test.o Game.o Player.o Duke.o Assassin.o Ambassador.o Captain.o Contessa.o -o test
+--- 1 seconds
+### Score 3: 100
+
+
+### Check 4: you should write some new tests
+! timeout 20 ./test
+[doctest] doctest version is "2.3.7"
+[doctest] run with "--help" for options
+===============================================================================
+Test.cpp:15:
+TEST CASE:  RUN GAME
+
+Test.cpp:36: ERROR: CHECK_EQ( game_1.turn(), "Avi" ) is NOT correct!
+  values: CHECK_EQ( Moshe, Avi )
+
+Test.cpp:38: ERROR: CHECK_THROWS( assassin.income() ) did NOT throw at all!
+
+Test.cpp:39: ERROR: CHECK_THROWS( ambassador.income() ) did NOT throw at all!
+
+Test.cpp:40: ERROR: CHECK_THROWS( captain.income() ) did NOT throw at all!
+
+Test.cpp:41: ERROR: CHECK_THROWS( contessa.income() ) did NOT throw at all!
+
+Test.cpp:51: ERROR: CHECK_THROWS( assassin.income() ) did NOT throw at all!
+
+block
+Test.cpp:59: ERROR: CHECK_THROWS( captain.block(duke) ) did NOT throw at all!
+
+Test.cpp:62: ERROR: CHECK_EQ( assassin.coins(), 3 ) is NOT correct!
+  values: CHECK_EQ( 5, 3 )
+
+block
+Test.cpp:66: ERROR: CHECK_THROWS( contessa.block(assassin) ) did NOT throw at all!
+
+block
+Test.cpp:69: ERROR: CHECK_EQ( assassin.coins(), 1 ) is NOT correct!
+  values: CHECK_EQ( 5, 1 )
+
+transfer
+tax
+stral
+tax
+coup
+block
+--- 1 seconds
+### Score 4: 100
+
+
+Grade: 100
+

@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/dvir/Documents/CPP/stam'
+clang++ main.cpp -o main
+./main
+make: Leaving directory '/home/dvir/Documents/CPP/stam'
+ 

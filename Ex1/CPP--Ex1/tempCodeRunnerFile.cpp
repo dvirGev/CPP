@@ -1,0 +1,1 @@
+cout << ariel::mat(3, 5, '@', '-') << endl;
